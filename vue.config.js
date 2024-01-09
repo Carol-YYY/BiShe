@@ -10,7 +10,7 @@ const name = defaultSettings.title || 'vue Admin Template' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
-// For example, Mac: sudo npm run
+// For DataCenter, Mac: sudo npm run
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
@@ -19,7 +19,7 @@ const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 module.exports = {
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
-   * for example GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
+   * for DataCenter GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
    * then publicPath should be set to "/bar/".
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
@@ -63,22 +63,33 @@ module.exports = {
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
 
-    // set svg-sprite-loader
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons'))
-      .end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
-      })
-      .end()
+    const { defineConfig } = require('@vue/cli-service')
+    const path = require("path");
+    function resolve(dir) {
+      return path.join(__dirname, dir);
+    }
+
+    module.exports = defineConfig({
+      transpileDependencies: true,
+      chainWebpack(config) {
+        // set svg-sprite-loader
+        config.module
+          .rule('svg')
+          .exclude.add(resolve('src/icons'))
+          .end()
+        config.module
+          .rule('icons')
+          .test(/\.svg$/)
+          .include.add(resolve('src/icons'))
+          .end()
+          .use('svg-sprite-loader')
+          .loader('svg-sprite-loader')
+          .options({
+            symbolId: 'icon-[name]'
+          })
+          .end()
+      }
+    })
 
     config
       .when(process.env.NODE_ENV !== 'development',
@@ -87,7 +98,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()
