@@ -16,8 +16,9 @@
       <el-card style="margin-top: 20px;height: 460px;">
         <div class="jie">
           <el-descriptions title="Project Introduction">
-            <el-descriptions-item label="content" style="text-size: 100px;">
-              Today, many people living in the urban environment are interested in consuming home-grown vegetables.
+            <el-descriptions-item label="content">
+              Introduction: Today, many people living in the urban environment are interested in consuming home-grown
+              vegetables.
               However, they often lack the time to take care of their vegetables.They would often forget to water their
               vegetables, add fertilisers, etc., which could jeopardize weeks of previous efforts.
               This project aims to design and build a smart vegetable-growing pot for health-conscious office workers
@@ -32,7 +33,7 @@
     </el-col>
     <el-col :span="16">
       <div class="num">
-        <el-card v-for="item in countData" :key="item.name" :body-style="{ display: 'flex', padding:0 }">
+        <el-card v-for="item in countData" :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
           <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" />
           <div class="detail">
             <p class="price">{{ item.value }}</p>
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import { getData } from '../api'
 export default {
   data() {
     return {
@@ -69,6 +71,11 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    getData().then((data) => {
+      console.log(data)
+    })
   }
 }
 </script>
@@ -110,8 +117,12 @@ export default {
 }
 
 .jie {
-  font-size: 100px;
-  font-weight: 100;
+  .el-descriptions {
+    font-size: 16px;
+  }
+
+  font-size: 40px;
+  font-weight: 500;
 }
 
 .num {

@@ -11,7 +11,9 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import App from './App'
 import store from './store'
 import router from './router'
-import './icons/svg' // icon
+import '@/icons' // icon
+import './api/mock'
+
 // import '@/permission' // permission control
 
 /**

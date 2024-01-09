@@ -1,10 +1,25 @@
 <template>
   <div class="num">
-    <el-card v-for="item in countData " :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
-      <!-- <svg class="icon" aria-hidden="true">
-        <use xlink: href="#icon-daqiwendu" />
-      </svg> -->
+    <el-card v-for="item in countData1 " :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
       <svg-icon class="icon" icon-class="temp" :style="{ background: item.color }" />
+      <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" /> -->
+      <div class="detail">
+        <p class="price">{{ item.value }}</p>
+        <p class="desc">{{ item.name }}</p>
+      </div>
+    </el-card>
+
+    <el-card v-for="item in countData2 " :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
+      <svg-icon class="icon" icon-class="humi" :style="{ background: item.color }" />
+      <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" /> -->
+      <div class="detail">
+        <p class="price">{{ item.value }}</p>
+        <p class="desc">{{ item.name }}</p>
+      </div>
+    </el-card>
+
+    <el-card v-for="item in countData3 " :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
+      <svg-icon class="icon" icon-class="illu" :style="{ background: item.color }" />
       <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" /> -->
       <div class="detail">
         <p class="price">{{ item.value }}</p>
@@ -18,19 +33,23 @@
 export default {
   data() {
     return {
-      countData: [
+      countData1: [
         {
           name: 'temperature',
           value: 25 + 'degree',
           icon: 'temp',
           color: '#ee9ca7' // #ee9ca7
-        },
+        }
+      ],
+      countData2: [
         {
           name: 'humidity',
           value: 50,
           icon: 'humi',
           color: '#FFAFBD'
-        },
+        }
+      ],
+      countData3: [
         {
           name: 'illumination',
           value: 20,
@@ -38,6 +57,7 @@ export default {
           color: '#ffdde1'
         }
       ]
+
     }
   }
 }
@@ -52,7 +72,7 @@ export default {
   .icon {
     width: 300px;
     height: 300px;
-    font-size: 30px;
+    font-size: 200px;
     text-align: center;
     line-height: 300px;
     color: #fff
