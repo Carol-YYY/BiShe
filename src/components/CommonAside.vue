@@ -24,24 +24,27 @@
         <el-menu-item :index="subItem.path" @click="clickMenu(subItem)">{{ subItem.label }}</el-menu-item>
       </el-menu-item-group>
 
-    </el-submenu></el-menu>
+    </el-submenu>
+  </el-menu>
 </template>
 
 <style lang="less" scoped>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    //width: 200px;
-    min-height: 400px;
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  //width: 200px;
+  min-height: 400px;
+}
+
+.el-menu {
+  height: 100vh;
+
+  h4 {
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 800;
   }
-  .el-menu{
-    height: 100vh;
-    h4{
-        color:#fff;
-        text-align: center;
-        line-height: 50px;
-        font-size:16px;
-        font-weight: 800;
-    }
-  }
+}
 </style>
 
 <script>
@@ -133,6 +136,7 @@ export default {
       if (this.$route.path !== item.path && !(this.$route.path === '/home' && (item.path === '/'))) {
         this.$router.push(item.path)
       }
+      this.$store.commit('selectMenu', item)
     }
   }
 }
@@ -140,6 +144,6 @@ export default {
 
 <style lang="less" scoped>
 .el-menu {
-     border-right:none
+  border-right: none
 }
 </style>

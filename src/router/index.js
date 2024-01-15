@@ -8,6 +8,7 @@ import RemoteControl from '../views/RemoteControl.vue'
 import ShowingIcon from '../views/ShowingIcon.vue'
 import ShowingList from '../views/ShowingList.vue'
 import Main from '../views/Main.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ const routes = [
       { path: 'showingIcon', component: ShowingIcon },
       { path: 'showingList', component: ShowingList }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ]
 
