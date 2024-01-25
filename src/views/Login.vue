@@ -9,12 +9,16 @@
     </el-form-item>
     <el-form-item>
       <el-button style="margin-left:105px;margin-top: 10px;" type="primary" @click="submit">Login</el-button>
+      <el-button class="reg" style="margin-left: 20px;" @click="register">go register</el-button>
+    <!-- <el-button class="reg" style="margin-left: 20px;" @click="register">go register</el-button> -->
     </el-form-item>
   </el-form>
 </template>
 
 <script>
 // import Mock from 'mockjs'
+// const axios = require('axios')
+// import axios from 'axios'
 import Cookie from 'js-cookie'
 import { getMenu } from '../api'
 export default {
@@ -50,6 +54,41 @@ export default {
           })
         }
       })
+      if (this.form.username === '') {
+        this.$message.error('username cannot be empty ')
+      } else if (this.form.password === '') {
+        this.$message.error('password cannot be empty')
+      } else {
+        this.axios.get('/login', {
+          params: {
+            name: this.form.username,
+            password: this.form.password
+          }
+        }).then(res => {
+          if (res.data.status === 200) {
+            this.$router.push({
+              path: '/HomePage',
+              query: {
+                name: this.form.username
+              }
+            })
+          } else {
+            this.$alert('username or password error', 'login fail', {
+              confirmButtonText: 'sure',
+              callback: action => {
+                this.form.username = ''
+                this.form.password = ''
+              }
+            })
+          }
+        }).catch(err => {
+          console.log('login fail' + err)
+        })
+      }
+    },
+    register() {
+      console.log(this.$router)
+      this.$router.push('/register')
     }
   }
 }

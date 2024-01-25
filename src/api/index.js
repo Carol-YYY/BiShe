@@ -8,3 +8,7 @@ export const getData = () => {
 export const getMenu = (data) => {
   return http.post('/permission/getMenu', data)
 }
+
+export const register = (data) => {
+  return http.post('/register', data)
+}

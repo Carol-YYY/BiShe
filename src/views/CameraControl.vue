@@ -5,7 +5,7 @@
       <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" /> -->
       <div class="detail">
         <p class="desc">{{ item.name }}</p>
-        <el-switch v-model="value1" class="button" active-color="#13ce66" inactive-color="#ff4949" />
+        <el-switch v-model="value1" class="button" active-color="yes" inactive-color="no" />
       </div>
     </el-card>
   </div>

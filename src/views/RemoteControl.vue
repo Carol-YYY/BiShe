@@ -3,17 +3,17 @@
     <el-card v-for="item in countData1" :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
       <svg-icon class="icon" icon-class="bu-guang" :style="{ background: item.color }" />
       <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" /> -->
-      <div class="detail">
+      <div class="detail" prop="kaiguan1">
         <p class="desc">{{ item.name }}</p>
-        <el-switch v-model="value1" class="button" active-color="#13ce66" inactive-color="#ff4949" />
+        <el-switch v-model="value1" class="button" active-color="yes" inactive-color="no" />
       </div>
     </el-card>
     <el-card v-for="item in countData2" :key="item.name" :body-style="{ display: 'flex', padding: 0 }">
       <svg-icon class="icon" icon-class="shui-beng" :style="{ background: item.color }" />
       <!-- <i class="icon" :class="`el-icon-${item.icon}`" :style="{ background: item.color }" /> -->
-      <div class="detail">
+      <div class="detail" prop="kaiguan2">
         <p class="desc">{{ item.name }}</p>
-        <el-switch v-model="value2" class="button" active-color="#13ce66" inactive-color="#ff4949" />
+        <el-switch v-model="value2" class="button" active-color="yes" inactive-color="no" />
       </div>
     </el-card>
   </div>
@@ -23,8 +23,9 @@
 export default {
   data() {
     return {
-      value1: true,
-      value2: true,
+      // 控制开关
+      value1: false,
+      value2: false,
       countData1: [
         {
           name: 'Supplementary light',
