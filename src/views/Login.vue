@@ -19,6 +19,7 @@
 // import Mock from 'mockjs'
 // const axios = require('axios')
 // import axios from 'axios'
+
 import Cookie from 'js-cookie'
 import { getMenu } from '../api'
 export default {
@@ -54,6 +55,7 @@ export default {
           })
         }
       })
+
       if (this.form.username === '') {
         this.$message.error('username cannot be empty ')
       } else if (this.form.password === '') {

@@ -4,7 +4,8 @@ export default {
     const { username, password } = JSON.parse(config.body)
     // 先判断用户是否存在
     // 判断账号和密码是否对应
-    if (username === 'admin' && password === 'admin') {
+    // username === 'admin' && password === 'admin'
+    if (username !== ' ' && password !== ' ') {
       return {
         code: 20000,
         data: {

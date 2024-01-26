@@ -10,6 +10,7 @@
         </el-form-item>
       </el-form>
       <el-button type="primary" round class="btn" @click="register">register</el-button>
+      <el-button type="primary" round class="btn2" @click="back">back</el-button>
     </div>
   </div>
 </template>
@@ -34,6 +35,7 @@ export default {
       } else if (this.form.password === '') {
         this.$message.error('password cannot be empty')
       } else {
+        this.$message.success('register success')
         axios.post('register', this.form)
           .then(res => {
           // console.log(res.data.message);
@@ -59,6 +61,9 @@ export default {
             console.log('operation error' + err)
           })
       }
+    },
+    back() {
+      this.$router.push('/login')
     }
   }
 }
@@ -91,7 +96,11 @@ export default {
     padding-bottom: 30px;
   }
   .btn {
-    width: 60%;
+    width: 30%;
+    margin: auto;
+  }
+  .btn2 {
+    width: 30%;
     margin: auto;
   }
 </style>
